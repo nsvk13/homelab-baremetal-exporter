@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  homelab_exporter:
+    build: .
+    container_name: homelab_exporter
+    restart: unless-stopped
+    ports:
+      - "9101:9101"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+    command: ["python", "exporter.py"]
